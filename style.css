@@ -24,3 +24,9 @@ div#game-container{
     background-color: darkgreen;
     opacity: 1;
 }
+
+.food {
+    border-radius: 50%;
+    background-color: orange;
+    opacity: 1;
+}

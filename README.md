@@ -1,7 +1,8 @@
 # NoCanvasSnake
  Inplementation of the game "Snake" in JS, without relying on Canvas
 
- The ideia is to use only HTML, CSS and JS, to make a functional Snake game.
+ The ideia is to use HTML, CSS and JS, to make a functional Snake game.
+ Only Mozzila' MDN documentation will be consulted (no other games or game algorithms).
 
  For being considered functional the game must have the following features:
 
@@ -12,3 +13,5 @@
 - [ ] The body of the snake must follow the exactly same path as the head through out the intire field
 - [ ] The snake must walk in the direction it points until the player change the direction or it collides
 - [ ] Only moviments to left or right, from the perspective of the snake, is allowed.
+
+Preview: https://sigma-guilhfer.github.io/NoCanvasSnake/

@@ -1,4 +1,21 @@
+let gameStatus = true;
+const pixels = [];
+let path = [];
+let body = [];
+let dx = 0;
+let dy = 0;
+
+
+document.addEventListener('keydown', (event) => {
+    const keyName = event.key;
+    game(keyName);
+
+});
+
 function setupField() {
+    const field = document.createElement('div');
+    field.id = 'game-container';
+    document.body.appendChild(field);
     for (let y = 0; y < 800; y += 40) {
         for (let x = 0; x < 800; x += 40) {
             const pixel = document.createElement('div');
@@ -10,57 +27,113 @@ function setupField() {
     }
 }
 
-function randonPixel() {
-    return pixels[Math.floor(Math.random() * pixels.length + 1)].toString();
+function toCoordenate(pixelId) {
+    const x = Number(pixelId.substring(0, pixelId.indexOf('&')));
+    const y = Number(pixelId.substring(pixelId.indexOf('&') + 1));
+
+    return {
+        x,
+        y
+    };
 }
 
-function setInitialPosition() {
-    const i = randonPixel();
+function toId(x, y) {
+    return `${x}&${y}`
+}
+
+function randomPixel() {
+    return pixels[Math.floor(Math.random() * pixels.length)];
+}
+
+function spawnFood() {
+    let i;
+    do {
+        i = randomPixel();
+    } while (i === path[path.length - 1]);
+    document.getElementById(i).className = 'pixel food';
+    return i;
+}
+
+function setInitialtHeadPosition() {
+    const i = randomPixel();
+    path.push(toCoordenate(i));
     document.getElementById(i).className = 'pixel player';
     return i;
 }
 
-function walk(dx, dy) {
-    const currentPosition = path[path.length - 1] || initialPosition;
-
-    const x = Number(currentPosition.substring(0, currentPosition.indexOf('&')));
-    const y = Number(currentPosition.substring(currentPosition.indexOf('&') + 1));
-    const newPosition = `${x + dx}&${y + dy}`;
-
-    document.getElementById(currentPosition).className = 'pixel field';
-    path.push(newPosition);
-
-    return newPosition;
-}
-
-
-const field = document.getElementById('game-container');
-const pixels = [];
-const path = [];
-setupField();
-const initialPosition = setInitialPosition();
-
-document.addEventListener('keydown', (event) => {
-    const keyName = event.key;
+let interval;
+function walk(keyName) {
 
     switch (keyName) {
-        case 'ArrowUp': {
-            document.getElementById(walk(0, -40)).className = 'pixel player';
-            break;
-        }
+
         case 'ArrowRight': {
-            document.getElementById(walk(40, 0)).className = 'pixel player';
-            break;
-        }
-        case 'ArrowDown': {
-            document.getElementById(walk(0, 40)).className = 'pixel player';
+            dx = 40;
+            dy = 0;
             break;
         }
         case 'ArrowLeft': {
-            document.getElementById(walk(-40, 0)).className = 'pixel player';
+            dx = -40;
+            dy = 0;
             break;
         }
-        default: console.log('Tecla invalida')
+        case 'ArrowUp': {
+            dx = 0;
+            dy = -40;
+            break;
+        }
+        case 'ArrowDown': {
+            dx = 0;
+            dy = 40;
+            break;
+        }
+        default: break;
     }
 
-});
+    interval = setInterval(
+        () => {
+            const { x, y } = path[path.length - 1];
+            document.getElementById(toId(x, y)).className = 'pixel field';
+
+            const newPosition = {
+                x: x + dx,
+                y: y + dy
+            };
+
+            if (isDead(newPosition.x, newPosition.y)) {
+                clearInterval(interval);
+                alert('Game Over'),
+                    location.reload()
+
+            } else {
+                path.push(newPosition)
+                document.getElementById(toId(newPosition.x, newPosition.y)).className = 'pixel player';
+            }
+        }, 100);
+
+    return undefined;
+}
+
+function isDead(x, y) {
+    if (x < 0 ||
+        x > 760 ||
+        y < 0 ||
+        y > 760)
+        return true;
+    else return false;
+}
+
+function game(keyName) {
+
+    clearInterval(interval);
+    walk(keyName);
+
+}
+
+function setup() {
+    setupField();
+    setInitialtHeadPosition()
+    spawnFood();
+
+}
+
+setup();
