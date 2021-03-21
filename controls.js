@@ -29,6 +29,7 @@ function walk(keyName) {
     interval = setInterval(
         () => {
             const { x, y } = path[path.length - 1];
+            let newPositionId;
             document.getElementById(toId(x, y)).className = 'pixel field';
 
             const newPosition = {
@@ -42,8 +43,16 @@ function walk(keyName) {
                     location.reload()
 
             } else {
-                path.push(newPosition)
-                document.getElementById(toId(newPosition.x, newPosition.y)).className = 'pixel player';
+                newPositionId = toId(newPosition.x, newPosition.y);
+                path.push(newPosition);
+                setBodyPosition();
+            }
+
+            if (foodLocation === newPositionId) {
+                foodLocation = spawnFood();
+                console.log(foodLocation);
+                scoreAndBodyLength.push(100);
+                updateScore();
             }
         }, 100);
 

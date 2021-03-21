@@ -17,7 +17,7 @@ function spawnFood() {
     let i;
     do {
         i = randomPixel();
-    } while (i === path[path.length - 1]);
+    } while (bodyPosition.some((e) => e === i));
     document.getElementById(i).className = 'pixel food';
     return i;
 }

@@ -10,7 +10,7 @@ function game(e) {
 function setup() {
     setupField();
     setInitialtHeadPosition()
-    spawnFood();
+    foodLocation = spawnFood();
 
 }
 
