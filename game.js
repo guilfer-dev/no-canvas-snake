@@ -7,6 +7,11 @@ function game(e) {
 
 }
 
+function updateScore() {
+    const score = scoreAndBodyLength.reduce((acc, el) => acc + el)
+    document.getElementById('score').innerHTML = `Score: ${score -100}pts`
+}
+
 function setup() {
     setupField();
     setInitialtHeadPosition()
