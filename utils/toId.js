@@ -1,3 +1,3 @@
-function toId(x, y) {
-    return `${x}&${y}`
+function toId(obj) {
+    return `${obj['x']}&${obj['y']}`
 }

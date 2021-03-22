@@ -1,27 +1,55 @@
 let interval;
+
+function updateScore() {
+    const score = scoreAndBodyLength.reduce((acc, el) => acc + el);
+    document.getElementById('score').innerHTML = `Score: ${score - 100}pts`;
+}
+
 function walk(keyName) {
+
+    let opositykey;
 
     switch (keyName) {
 
         case 'ArrowRight': {
-            dx = 40;
-            dy = 0;
-            break;
+            opositykey = 'ArrowLeft';
+            if (keyName === lastKeyPressed ||
+                lastKeyPressed === opositykey) break;
+            else {
+                dx = 40;
+                dy = 0;
+                break;
+            }
         }
         case 'ArrowLeft': {
-            dx = -40;
-            dy = 0;
-            break;
+            opositykey = 'ArrowRight';
+            if (keyName === lastKeyPressed ||
+                lastKeyPressed === opositykey) break;
+            else {
+                dx = -40;
+                dy = 0;
+                break;
+            }
         }
         case 'ArrowUp': {
-            dx = 0;
-            dy = -40;
-            break;
+            opositykey = 'ArrowDown';
+            if (keyName === lastKeyPressed ||
+                lastKeyPressed === opositykey) break;
+            else {
+                dx = 0;
+                dy = -40;
+                break;
+            }
         }
         case 'ArrowDown': {
-            dx = 0;
-            dy = 40;
-            break;
+            opositykey = 'ArrowUp';
+            if (keyName === lastKeyPressed ||
+                lastKeyPressed === opositykey) break;
+            else {
+                dx = 0;
+                dy = 40;
+                break;
+            }
         }
         default: break;
     }
@@ -29,32 +57,30 @@ function walk(keyName) {
     interval = setInterval(
         () => {
             const { x, y } = path[path.length - 1];
-            let newPositionId;
-            document.getElementById(toId(x, y)).className = 'pixel field';
 
             const newPosition = {
                 x: x + dx,
                 y: y + dy
             };
 
-            if (isDead(newPosition.x, newPosition.y)) {
+            let newPositionId = toId(newPosition);
+
+            if (isDead(newPosition)) {
                 clearInterval(interval);
-                alert('Game Over'),
-                    location.reload()
+                alert('Game Over');
+                location.reload();
 
             } else {
-                newPositionId = toId(newPosition.x, newPosition.y);
                 path.push(newPosition);
                 setBodyPosition();
             }
 
             if (foodLocation === newPositionId) {
                 foodLocation = spawnFood();
-                console.log(foodLocation);
                 scoreAndBodyLength.push(100);
                 updateScore();
             }
         }, 100);
 
-    return undefined;
+    return keyName;
 }

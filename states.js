@@ -7,3 +7,4 @@ let dy = 0;
 let foodLocation = 0;
 let bodyPosition = path[0];
 let cleanfield;
+let lastKeyPressed;
