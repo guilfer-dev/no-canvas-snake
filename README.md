@@ -19,4 +19,4 @@ Known issues:
 - The snake stops moving if you keep arrow keys pressed
 - The game freezes a while when changing direction
 
-Preview: https://sigma-guilhfer.github.io/NoCanvasSnake/
+Demo: https://guilfer-dev.github.io/NoCanvasSnake/
