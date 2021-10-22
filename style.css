@@ -3,6 +3,11 @@
     src: url(Bethanie\ Snake_PersonalUseOnly.ttf);
 }
 
+html {
+    background-color: rgb(190, 190, 190);
+    overflow: hidden;
+}
+
 h1, h2 {
     text-align: center;
     font-family: 'Bethanie Snake';
@@ -21,12 +26,8 @@ p#score {
     font-family: monospace;
 }
 
-html, body {
-    background-color: rgb(190, 190, 190);
-}
-
 #app {
-    margin: 0  auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -37,7 +38,7 @@ div#game-container {
     grid-template-columns: repeat(20, 1fr);
     background-color: green;
     max-width: 600px;
-    width: 50vw;
+    width: 50vh;
     height: 50vh;
     border: 2px solid black;
     font-size: 0px;
@@ -67,7 +68,8 @@ div#game-container {
 
 .touch-controller {
     margin: 10px auto;
-    max-width: 300px;
+    max-width: 200px;
+    max-height: 200px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
@@ -77,14 +79,14 @@ div#game-container {
 .touch-controller button {
     background-color: red;
     border-radius: 30%;
-    padding: 35px;
+    padding: 33px;
     margin: 0 auto;
 }
 
 @media screen and (max-width: 500px) {
     div#game-container {
         width: 90vw;
-        height: 40vh;
+        height: 90vw;
     }
     .pixel {
         height: 100%;
@@ -98,8 +100,8 @@ div#game-container {
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
     div#game-container {
-        width: 70vw;
-        height: 40vh;
+        width: 50vh;
+        height: 50vh;
     }
     .pixel {
         height: 100%;
@@ -108,5 +110,11 @@ div#game-container {
     }
     .touch-controller {
         visibility: visible;
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .touch-controller button {
+        padding: 5vw;
     }
 }
