@@ -71,12 +71,13 @@ div#game-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
+    visibility: hidden;
 }
 
 .touch-controller button {
     background-color: red;
-    border-radius: 50%;
-    padding: 20px;
+    border-radius: 30%;
+    padding: 35px;
     margin: 0 auto;
 }
 
@@ -90,6 +91,9 @@ div#game-container {
         border: 1px solid black;
         font-size: 0px;
     }
+    .touch-controller {
+        visibility: visible;
+    }
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
@@ -101,5 +105,8 @@ div#game-container {
         height: 100%;
         border: 1px solid black;
         font-size: 0px;
+    }
+    .touch-controller {
+        visibility: visible;
     }
 }
