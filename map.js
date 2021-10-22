@@ -1,7 +1,5 @@
 function setupField() {
-    const field = document.createElement('div');
-    field.id = 'game-container';
-    document.body.appendChild(field);
+    const field = document.getElementById('game-container');
     for (let y = 0; y < 800; y += 40) {
         for (let x = 0; x < 800; x += 40) {
             const pixel = document.createElement('div');

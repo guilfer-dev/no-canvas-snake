@@ -18,8 +18,25 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;">Snake - No Canvas</h1>
-    <h2 id='score' style="text-align: center;">Socre: 0pts</h2>
+    <div id="app">
+        <header>
+            <h1>No Canvas: Snake</h1>
+            <h2>Score: <p id="score">0</p> pts</h2>
+        </header>
+        <div id="game-container"></div>
+        <div class="touch-controller" id="touch-controller">
+            <div></div>
+            <button class="vertical" id="ArrowUp"></button>
+            <div></div>
+            <button class="horizontal" id="ArrowLeft"></button>
+            <div></div>
+            <button class="vertical" id="ArrowRight"></button>
+            <div></div>
+            <button class="horizontal" id="ArrowDown"></button>
+            <div></div>
+        </div>
+    </div>
+
 </body>
 
 </html>

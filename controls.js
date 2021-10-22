@@ -2,7 +2,7 @@ let interval;
 
 function updateScore() {
     const score = scoreAndBodyLength.reduce((acc, el) => acc + el);
-    document.getElementById('score').innerHTML = `Score: ${score - 100}pts`;
+    document.getElementById('score').innerHTML = `${score - 100}`;
 }
 
 function walk(keyName) {
