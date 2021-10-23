@@ -18,5 +18,4 @@ Known issues:
 - Some times food spawns inside the snake's body
 - The snake stops moving if you keep arrow keys pressed
 - The game freezes a while when changing direction
-
-Demo: https://guilfer-dev.github.io/NoCanvasSnake/
+- Poor touch-screen control
