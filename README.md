@@ -1,4 +1,4 @@
-# NoCanvasSnake
+# No Canvas Snake
  Inplementation of the game "Snake" in JS, without relying on Canvas
 
  The ideia is to use HTML, CSS and JS, to make a functional Snake game.
