@@ -18,10 +18,12 @@ p {
 img {
     display: block;
     margin: 0 auto;
-    width: 80vw;
+    width: 50vw;
 }
 
 #app {
+    height: 100%;
+    max-height: 100vh;
     margin: 0 auto;
 }
 
@@ -34,7 +36,6 @@ img {
     padding: 5px;
     margin: 0 auto;
     background-color: rgb(115, 185, 115);
-    /* border: 1px solid #2c2929; */
     border-radius: 5px;
     box-shadow: 5px 5px 5px #222222;
 }
@@ -74,7 +75,7 @@ img {
 }
 
 .touch-controller {
-    margin: 10px auto;
+    margin: 0 auto;
     max-width: 200px;
     max-height: 200px;
     display: grid;
@@ -84,9 +85,8 @@ img {
 }
 
 .touch-controller div {
-    border-radius: 30%;
-    padding: 33px;
     margin: 0 auto;
+    padding: 35px;
 }
 
 #ArrowUp {
@@ -127,22 +127,47 @@ img {
 
 @media screen and (max-width: 500px) {
     .touch-controller {
+        margin: 2vh auto;
         visibility: visible;
+    }
+    img {
+        width: 90vw;
+    }
+    #game-container {
+        width: 80vw;
+        height: 80vw;
+        margin-bottom: 5vh;
+    }
+
+    p {
+        font-size: 16px;
     }
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
-    div#game-container {
+    #game-container {
         width: 50vh;
         height: 50vh;
     }
     .touch-controller {
+        margin: 2vh auto;
         visibility: visible;
+    }
+    img {
+        width: 80vw;
     }
 }
 
 @media screen and (max-height: 750px) {
-    .touch-controller button {
-        padding: 5vw;
+
+    img {
+        width: 80vw;
+    }
+    .touch-controller {
+        visibility: visible;
+    }
+
+    .touch-controller div {
+        padding: 25px;
     }
 }
