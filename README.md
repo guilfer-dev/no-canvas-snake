@@ -14,8 +14,9 @@
 - [x] The snake must walk in the direction it points until the player change the direction or it collides
 - [x] Only moviments to left or right, from the perspective of the snake, is allowed.
 
-Known issues:
-- Some times food spawns inside the snake's body
-- The snake stops moving if you keep arrow keys pressed
-- The game freezes a while when changing direction
-- Poor touch-screen control
+## Status: finished
+
+
+<p align="center">
+<img src="./src/assets/images/demo.png" height="560px"/>
+</p>

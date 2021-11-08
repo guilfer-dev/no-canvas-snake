@@ -6,36 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake - No Canvas</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="states.js" defer></script>
-    <script src="utils/randomPixel.js" defer></script>
-    <script src="utils/toCoordenate.js" defer></script>
-    <script src="utils/toId.js" defer></script>
-    <script src="map.js" defer></script>
-    <script src="snake.js" defer></script>
-    <script src="controls.js" defer></script>
-    <script src="game.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/assets/css/style.css">
 </head>
 
 <body>
     <div id="app">
         <header>
-            <h1>No Canvas: Snake</h1>
-            <h2>Score: <p id="score">0</p> pts</h2>
+            <img src="./src/assets/images/name.png" alt="no canvas snake" />
+            <div class="scores">
+                <p>High Score:</p>
+                <p id="high-score"></p>
+                <br>
+                <p>Score:</p>
+                <p id="score"></p>
+            </div>
+
+
+
         </header>
-        <div id="game-container"></div>
+        <main id="game-container"></main>
         <div class="touch-controller" id="touch-controller">
             <div></div>
-            <button class="vertical" id="ArrowUp"></button>
+            <div class="d-pad" id="ArrowUp"></div>
             <div></div>
-            <button class="horizontal" id="ArrowLeft"></button>
+            <div class="d-pad" id="ArrowLeft"></div>
             <div></div>
-            <button class="vertical" id="ArrowRight"></button>
+            <div class="d-pad" id="ArrowRight"></div>
             <div></div>
-            <button class="horizontal" id="ArrowDown"></button>
+            <div class="d-pad" id="ArrowDown"></div>
             <div></div>
         </div>
     </div>
+
+    <script type="module">
+        import App from './src/App.js';
+        const app = new App();
+        app.setupGame();
+
+        document.getElementById('high-score').innerHTML = localStorage.getItem('highscore')
+    </script>
 
 </body>
 
