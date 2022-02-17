@@ -8,10 +8,11 @@
 
 html {
     background-image: linear-gradient(#FAF3EB, #CCBE9F);
+    height: 100%;
 }
 
 body {
-    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,7 +169,7 @@ h1 {
 
 
     .touch-controller {
-        display: none;
+        visibility: hidden;
     }
 
     .touch-controller div {
