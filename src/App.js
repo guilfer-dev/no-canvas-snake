@@ -1,63 +1,83 @@
 import Controls from "./assets/scripts/Controls.js";
 import Field from "./assets/scripts/Field.js";
+import Snake from "./assets/scripts/Snake.js";
 import toId from "./assets/helpers/toId.js";
 import toCoordenate from "./assets/helpers/toCoordenate.js";
 
-export default class App extends Field {
+export default class App {
+
+    _pixels = [];
+    _controls = new Controls();
+    _snake = new Snake(this._pixels);
+    _field = new Field(this._pixels, this._snake);
 
     constructor() {
-        super();
-        this.pixels = [];
+        this._score = 0;
+        this._initialTimestamp;
+        this._previousTimeStamp;
+        this._gameOver = false;
     }
 
-    score = 0;
-    controls = new Controls(this.direction);
-
-
-    setupGame() {
-        this.controls.setup();
-        this.setup();
+    setup() {
+        this._field.setup();
+        this._field.spawnFood();
+        this._snake.spawn();
+        this._controls.setup();
     }
 
-    game() {
-        clearInterval(this.renderNext);
-    }
-
-    updateScore() {
-        this.score = this.body.length * 100;
+    _updateScore() {
+        this.score = this._snake.body.length * 100;
         document.getElementById('score').innerHTML = `${this.score}`;
     }
 
-    renderNext = setInterval(
-        () => {
+    gameLoop(timestamp) {
 
-            const position = toCoordenate(this.body[this.body.length - 1]);
+        const position = toCoordenate(this._snake.body[this._snake.body.length - 1]);
+        const x = position.x + this._controls.direction.x;
+        const y = position.y + this._controls.direction.y;
 
-            const x = position.x + this.direction.x;
-            const y = position.y + this.direction.y;
 
-            const newPosition = toId({ x, y })
+        if (((timestamp - this._previousTimeStamp >= 80) && !this._gameOver)
+            || this._initialTimestamp === undefined
+        ) {
 
-            if (this.isDead(newPosition)) {
-                clearInterval(this.renderNext);
+            if (this._initialTimestamp === undefined) {
+                this._initialTimestamp = timestamp;
+            }
+
+            this._previousTimeStamp = timestamp;
+
+            const newPosition = toId({ x, y });
+
+            if (this._snake.isDead(newPosition)) {
+
                 const highscore = localStorage.getItem('highscore');
+
                 if (this.score > highscore) {
                     localStorage.setItem('highscore', this.score);
                     alert('HighScore!!!');
                 } else {
                     alert('Game Over!');
                 }
+
+                this._gameOver = true;
                 location.reload();
+
             } else {
-                if (this.foodLocation === newPosition) {
-                    this.spawnFood();
-                    this.size++;
-                    this.updateScore();
+                if (this._field.foodLocation === newPosition) {
+                    this._field.spawnFood();
+                    this._snake.grow();
+                    this._updateScore();
                 }
-                this.renderSnakeBody(newPosition);
+
+                this._snake.renderBody(newPosition);
             }
 
-        }, 100);
+        }
+
+        window.requestAnimationFrame(this.gameLoop.bind(this));
+        return;
+    }
 }
 
 

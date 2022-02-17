@@ -1,27 +1,27 @@
 export default class Controls {
 
-    constructor(direction) {
-        this.direction = direction;
-    }
 
-    lastKeyPressed = '';
-    command = '';
+    constructor() {
+        this._lastKeyPressed = '';
+        this._command = '';
+        this._direction = {
+            x: 0,
+            y: 0
+        }
+    }
 
     setup() {
-        document.addEventListener('keydown', this.handleControls.bind(this, ...arguments));
-        document.querySelectorAll(".d-pad").forEach(e => {
-            e.addEventListener('mousedown', this.handleControls.bind(this, ...arguments));
-        });
+        document.addEventListener('keydown', this._handleControls.bind(this, ...arguments))
     }
 
-    handleControls(e) {
+    _handleControls(e) {
 
         e.preventDefault();
 
         if (e.type === 'mousedown') {
-            this.command = e.target.id;
+            this._command = e.target.id;
         } else {
-            this.command = e.key;
+            this._command = e.key;
         }
 
         this.move();
@@ -29,54 +29,58 @@ export default class Controls {
 
     move() {
 
-        let oposity = '';
-
-        switch (this.command) {
+        switch (this._command) {
 
             case 'ArrowRight': {
-                oposity = 'ArrowLeft';
-                if (this.command === this.lastKeyPressed ||
-                    this.lastKeyPressed === oposity) break;
+                const oposity = 'ArrowLeft';
+                if (this._command === this._lastKeyPressed ||
+                    this._lastKeyPressed === oposity) break;
                 else {
-                    this.direction.x = 40;
-                    this.direction.y = 0;
+                    this._direction.x = 40;
+                    this._direction.y = 0;
                     break;
                 }
             }
             case 'ArrowLeft': {
-                oposity = 'ArrowRight';
-                if (this.command === this.lastKeyPressed ||
-                    this.lastKeyPressed === oposity) break;
+                const oposity = 'ArrowRight';
+                if (this._command === this._lastKeyPressed ||
+                    this._lastKeyPressed === oposity) break;
                 else {
-                    this.direction.x = -40;
-                    this.direction.y = 0;
+                    this._direction.x = -40;
+                    this._direction.y = 0;
                     break;
                 }
             }
             case 'ArrowUp': {
-                oposity = 'ArrowDown';
-                if (this.command === this.lastKeyPressed ||
-                    this.lastKeyPressed === oposity) break;
+                const oposity = 'ArrowDown';
+                if (this._command === this._lastKeyPressed ||
+                    this._lastKeyPressed === oposity) break;
                 else {
-                    this.direction.x = 0;
-                    this.direction.y = -40;
+                    this._direction.x = 0;
+                    this._direction.y = -40;
                     break;
                 }
             }
             case 'ArrowDown': {
-                oposity = 'ArrowUp';
-                if (this.command === this.lastKeyPressed ||
-                    this.lastKeyPressed === oposity) break;
+                const oposity = 'ArrowUp';
+                if (this._command === this._lastKeyPressed ||
+                    this._lastKeyPressed === oposity) break;
                 else {
-                    this.direction.x = 0;
-                    this.direction.y = 40;
+                    this._direction.x = 0;
+                    this._direction.y = 40;
                     break;
                 }
             }
             default: break;
         }
 
-        this.lastKeyPressed = this.command;
+        this._lastKeyPressed = this._command;
 
+        return;
+
+    }
+
+    get direction() {
+        return this._direction;
     }
 }

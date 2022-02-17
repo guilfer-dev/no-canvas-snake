@@ -1,21 +1,11 @@
 import randomPixel from "../helpers/randomPixel.js";
-import toCoordenate from "../helpers/toCoordenate.js";
-import toId from "../helpers/toId.js";
-import Snake from "./Snake.js";
+export default class Field {
 
-export default class Field extends Snake {
-
-    constructor(pixels) {
-        super(pixels)
-        this.pixels = pixels;
+    constructor(pixels, snake) {
+        this._pixels = pixels;
+        this._snake = snake;
+        this._foodLocation = '';
     }
-
-    direction = {
-        x: 0,
-        y: 0,
-    }
-
-    foodLocation = '';
 
     setup() {
         const field = document.getElementById('game-container');
@@ -24,41 +14,27 @@ export default class Field extends Snake {
                 const pixel = document.createElement('div');
                 pixel.className = 'pixel field';
                 pixel.id = `${x}&${y}`;
-                this.pixels.push(pixel.id);
+                this._pixels.push(pixel.id);
                 field.appendChild(pixel);
             }
         }
-        this.spawnFood();
-        this.spawnSnake();
-    }
-
-    renderSnakeBody(position) {
-
-        this.body.push(position);
-
-        let field = this.body.slice(0, this.size);
-        this.body = this.body.slice(-this.size);
-
-        field.forEach(e => {
-            document.getElementById(e).className = 'pixel field';
-        })
-
-        this.body.forEach(e => {
-            document.getElementById(e).className = 'pixel player';
-        })
-
+        return;
     }
 
     spawnFood() {
         let i = '';
         do {
-            i = randomPixel(this.pixels);
-            console.log(i);
+            i = randomPixel(this._pixels);
         }
-        while (this.body.includes(i));
+        while (this._snake.body.includes(i));
 
-        this.foodLocation = i;
         document.getElementById(i).className = 'pixel food';
+        this._foodLocation = i;
+        return i;
+    }
+
+    get foodLocation() {
+        return this._foodLocation;
     }
 }
 

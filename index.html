@@ -13,40 +13,35 @@
 </head>
 
 <body>
-    <div id="app">
-        <header>
-            <img src="./src/assets/images/name.png" alt="no canvas snake" />
-            <div class="scores">
-                <p>High Score:</p>
-                <p id="high-score"></p>
-                <br>
-                <p>Score:</p>
-                <p id="score"></p>
-            </div>
-
-
-
-        </header>
-        <main id="game-container"></main>
-        <div class="touch-controller" id="touch-controller">
-            <div></div>
-            <div class="d-pad" id="ArrowUp"></div>
-            <div></div>
-            <div class="d-pad" id="ArrowLeft"></div>
-            <div></div>
-            <div class="d-pad" id="ArrowRight"></div>
-            <div></div>
-            <div class="d-pad" id="ArrowDown"></div>
-            <div></div>
+    <header>
+        <img src="./src/assets/images/name.png" alt="no canvas snake" />
+        <div class="scores">
+            <p>High Score: <span id="high-score"></span></p>
+            <p>Score: <span id="score"></span></p>
         </div>
+    </header>
+
+    <main id="game-container">
+    </main>
+    <div class="touch-controller" id="touch-controller">
+        <div></div>
+        <div class="d-pad" id="ArrowUp"></div>
+        <div></div>
+        <div class="d-pad" id="ArrowLeft"></div>
+        <div></div>
+        <div class="d-pad" id="ArrowRight"></div>
+        <div></div>
+        <div class="d-pad" id="ArrowDown"></div>
+        <div></div>
     </div>
 
     <script type="module">
         import App from './src/App.js';
         const app = new App();
-        app.setupGame();
+        app.setup();
+        window.requestAnimationFrame((timestamp) => app.gameLoop(timestamp));
 
-        document.getElementById('high-score').innerHTML = localStorage.getItem('highscore')
+        document.getElementById('high-score').textContent = localStorage.getItem('highscore')
     </script>
 
 </body>
