@@ -170,7 +170,7 @@ h1 {
 
 
     .touch-controller {
-        visibility: hidden;
+        visibility: visible;
     }
 
     .touch-controller div {

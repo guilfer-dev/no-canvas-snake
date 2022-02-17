@@ -1,8 +1,8 @@
-import Controls from "./assets/scripts/Controls.js";
-import Field from "./assets/scripts/Field.js";
-import Snake from "./assets/scripts/Snake.js";
-import toId from "./assets/helpers/toId.js";
-import toCoordenate from "./assets/helpers/toCoordenate.js";
+import Controls from "./scripts/Controls.js";
+import Field from "./scripts/Field.js";
+import Snake from "./scripts/Snake.js";
+import toId from "./helpers/toId.js";
+import toCoordenate from "./helpers/toCoordenate.js";
 
 export default class App {
 
