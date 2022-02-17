@@ -41,13 +41,8 @@
             }
         }, false);
 
-
         const app = new App();
         app.setup();
-        window.requestAnimationFrame((timestamp) =>
-
-            app.gameLoop(timestamp)
-        );
 
         document.getElementById('high-score').textContent = localStorage.getItem('highscore') || 0;
     </script>

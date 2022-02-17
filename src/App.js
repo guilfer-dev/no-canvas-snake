@@ -13,8 +13,8 @@ export default class App {
 
     constructor() {
         this._score = 0;
-        this._initialTimestamp;
-        this._previousTimeStamp;
+        this._initialTimestamp = 0;
+        this._previousTimeStamp = 0;
         this._gameOver = false;
     }
 
@@ -23,6 +23,7 @@ export default class App {
         this._field.spawnFood();
         this._snake.spawn();
         this._controls.setup();
+        this._gameLoop();
     }
 
     _updateScore() {
@@ -30,20 +31,13 @@ export default class App {
         document.getElementById('score').textContent = `${this.score}`;
     }
 
-    gameLoop(timestamp) {
+    _gameLoop(timestamp = 0) {
 
         const position = toCoordenate(this._snake.body[this._snake.body.length - 1]);
         const x = position.x + this._controls.direction.x;
         const y = position.y + this._controls.direction.y;
 
-
-        if (((timestamp - this._previousTimeStamp >= 80) && !this._gameOver)
-            || this._initialTimestamp === undefined
-        ) {
-
-            if (this._initialTimestamp === undefined) {
-                this._initialTimestamp = timestamp;
-            }
+        if ((timestamp - this._previousTimeStamp >= 80) && !this._gameOver) {
 
             this._previousTimeStamp = timestamp;
 
@@ -75,8 +69,7 @@ export default class App {
 
         }
 
-        window.requestAnimationFrame(this.gameLoop.bind(this));
-        return;
+        return window.requestAnimationFrame(this._gameLoop.bind(this));
     }
 }
 

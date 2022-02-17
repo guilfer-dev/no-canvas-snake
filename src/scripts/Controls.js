@@ -1,6 +1,5 @@
 export default class Controls {
 
-
     constructor() {
         this._lastKeyPressed = '';
         this._command = '';
@@ -15,6 +14,8 @@ export default class Controls {
         document.querySelectorAll(".d-pad").forEach(e => {
             e.addEventListener('mousedown', this._handleControls.bind(this, ...arguments));
         });
+
+        return;
     }
 
     _handleControls(e) {
@@ -27,7 +28,7 @@ export default class Controls {
             this._command = e.key;
         }
 
-        this._move();
+        return this._move();
     }
 
     _move() {

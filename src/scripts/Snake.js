@@ -15,6 +15,8 @@ export default class Snake {
         this.body.push(i);
         document.getElementById(i).className = 'pixel player';
         this.spawn = undefined;
+
+        return;
     }
 
     grow() {
@@ -42,7 +44,7 @@ export default class Snake {
 
         this.body.push(position);
 
-        let field = this.body.slice(0, this.size);
+        const field = this.body.slice(0, this.size);
         this.body = this.body.slice(-this.size);
 
         field.forEach(e => {
