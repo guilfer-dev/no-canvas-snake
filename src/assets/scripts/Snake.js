@@ -7,7 +7,7 @@ export default class Snake {
     constructor(pixels) {
         this.pixels = pixels;
         this.body = [];
-        this.size = 1;
+        this.size = 2;
     }
 
     spawn() {

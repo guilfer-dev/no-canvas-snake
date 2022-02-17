@@ -11,7 +11,10 @@ export default class Controls {
     }
 
     setup() {
-        document.addEventListener('keydown', this._handleControls.bind(this, ...arguments))
+        document.addEventListener('keydown', this._handleControls.bind(this, ...arguments));
+        document.querySelectorAll(".d-pad").forEach(e => {
+            e.addEventListener('mousedown', this._handleControls.bind(this, ...arguments));
+        });
     }
 
     _handleControls(e) {
@@ -24,10 +27,10 @@ export default class Controls {
             this._command = e.key;
         }
 
-        this.move();
+        this._move();
     }
 
-    move() {
+    _move() {
 
         switch (this._command) {
 

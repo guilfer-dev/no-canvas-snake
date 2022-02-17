@@ -1,31 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
     box-sizing: border-box;
-}
-
-html {
-    overflow: hidden;
-    background-image: linear-gradient(rgb(180, 200, 180), rgb(0, 70, 30));
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 100vh;
-    /* height: 100%; */
-}
-
-p, span {
-    font-size: 1.5rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
     margin: 0;
     padding: 0;
 }
 
+html {
+    background-image: linear-gradient(#FAF3EB, #CCBE9F);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3em;
+    text-align: center;
+}
+
 .scores {
     text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: 600;
 }
 
 #game-container {
@@ -36,24 +46,24 @@ p, span {
     border-radius: 4px;
     width: 50vh;
     height: 50vh;
-    box-shadow: 2px 2px 4px rgb(0, 60, 10);
+    box-shadow: 4px 4px 12px #20383E;
     background-color: #1E1E1E;
 }
 
 .field {
-    background-color: rgb(14, 112, 35);
+    background-color: #63ACBE;
 }
 
 .player {
-    background-color: #6b0000;
+    background-color: #601A4A;
 }
 
 .player-head {
-    background-color: #8b0707;
+    background-color: #330e27;
 }
 
 .food {
-    background-color: orange;
+    background-color: #EE442F;
 }
 
 .touch-controller {
@@ -74,21 +84,25 @@ p, span {
 #ArrowUp {
     background-image: url('../images/d-pads/up.svg');
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #ArrowDown {
     background-image: url('../images/d-pads/down.svg');
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #ArrowLeft {
     background-image: url('../images/d-pads/left.svg');
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #ArrowRight {
     background-image: url('../images/d-pads/right.svg');
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #ArrowUp:active {
@@ -113,9 +127,6 @@ p, span {
         visibility: visible;
     }
 
-    img {
-        width: 90vw;
-    }
 
     #game-container {
         width: 80vw;
@@ -123,8 +134,12 @@ p, span {
         margin-bottom: 5vh;
     }
 
+    h1 {
+        font-size: 1.5em;
+    }
+
     p, span {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -139,19 +154,21 @@ p, span {
         visibility: visible;
     }
 
-    img {
-        width: 80vw;
+    h1 {
+        font-size: 2em;
     }
+
+    p, span {
+        font-size: 1rem;
+    }
+
 }
 
 @media screen and (max-height: 750px) {
 
-    img {
-        width: 80vw;
-    }
 
     .touch-controller {
-        visibility: visible;
+        display: none;
     }
 
     .touch-controller div {
