@@ -26,8 +26,8 @@ export default class App {
     }
 
     _updateScore() {
-        this.score = this._snake.body.length * 100;
-        document.getElementById('score').innerHTML = `${this.score}`;
+        this.score = (this._snake.body.length - 1) * 100;
+        document.getElementById('score').textContent = `${this.score}`;
     }
 
     gameLoop(timestamp) {

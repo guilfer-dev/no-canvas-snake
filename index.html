@@ -16,7 +16,7 @@
 
     <main>
         <div class="scores">
-            <p>High Score: <span id="high-score"></span></p>
+            <p>High Score: <span id="high-score">0</span></p>
             <p>Current Score: <span id="score">0</span></p>
         </div>
         <div id="game-container"></div>
@@ -49,7 +49,7 @@
             app.gameLoop(timestamp)
         );
 
-        document.getElementById('high-score').textContent = localStorage.getItem('highscore')
+        document.getElementById('high-score').textContent = localStorage.getItem('highscore') || 0;
     </script>
 
 </body>
